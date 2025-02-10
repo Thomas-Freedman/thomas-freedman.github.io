@@ -3,12 +3,18 @@
 <head >
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Portfolio</title>
+    <title>Thomas Freedman</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+
+    <!-- Add icon library -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <style>
         @font-face { font-family: A4Speed; src: url('assets/a4speed.ttf'); } 
-        body {
-            font-family: A4Speed;
+        @font-face { font-family: Jura; src: url('assets/Jura-VariableFont_wght.ttf')}
+
+        body {  
+            font-family: Jura;
             background-color: rgb(23, 23, 23);
             color: whitesmoke;
         }
@@ -18,6 +24,24 @@
             background: url('assets/images/headshot.jpg') center/cover no-repeat;
             color: rgb(255, 252, 252);
         }
+        .footer {
+            text-align: center;
+            font-size: 0.8em;
+            padding: 1.2em;
+            color: whitesmoke;
+            /* background-color: black; */
+        }
+
+        /* Style all font awesome icons */
+        .fa {
+            padding:0.2em;
+            font-size: 1.6em;
+            width: 1.5em;
+            text-align: center;
+            text-decoration: none;
+            color: white
+        }
+
     </style>
 </head>
 <body>
@@ -43,9 +67,10 @@
         </div>
     </nav>
     
-    <!-- Welcome Page -->
+    <!-- Welcome Page --> 
+     <!-- PUT ANY DESIRED TITLE HERE --> 
     <div class="header">
-        <h1 style="font-size: 6em">Thomas Freedman</h1>
+        <h1 style="font-size: 6em">  </h1>
     </div>
     
     <!-- Contact Form -->
@@ -67,6 +92,16 @@
             <button type="submit" class="btn btn-primary">Send</button>
         </form>
     </section>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <!-- Add font awesome icons -->
+        <a href="https://www.linkedin.com/in/thomas-freedman/" class="fa fa-linkedin"></a>
+        <a href="https://github.com/Thomas-Freedman" class="fa fa-github"></a>
+        <a href="https://www.instagram.com/tfreed.man/" class="fa fa-instagram"></a> <br>
+        <a>tnfreedman@gmail.com<a>
+        <p>&copy 2025 Thomas Freedman<br>
+    </footer>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
