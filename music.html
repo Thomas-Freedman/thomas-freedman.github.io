@@ -19,6 +19,92 @@
             background: url('assets/images/studio2bw.jpg') center/cover no-repeat;
             color: rgb(255, 252, 252);
         }
+        .discography-section {
+            text-align: center;
+            padding: 40px 5%; /* Adds spacing on the sides */
+        }
+
+        .discography-section h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .album-section {
+            display: flex;
+            justify-content: center;
+            gap: 30px; /* More space between albums */
+            padding: 20px;
+            flex-wrap: wrap; /* Keeps layout responsive */
+        }
+
+        .album {
+            position: relative;
+            overflow: hidden;
+            width: 15%; /* Reduced size while maintaining aspect ratio */
+            min-width: 150px; /* Prevents albums from getting too small on small screens */
+            border-radius: 10px;
+        }
+
+        .album img {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .album-info {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            text-align: center;
+            border-radius: 10px;
+            font-size: 1.2vw; /* Makes text scale with the album size */
+        }
+
+        .album:hover img {
+            opacity: 0.3;
+        }
+
+        .album:hover .album-info {
+            opacity: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .album {
+                width: 20%; /* Slightly larger on smaller screens */
+            }
+            .album-info {
+                font-size: 1.5vw;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .album {
+                width: 30%; /* Stacks better on tablets */
+            }
+            .album-info {
+                font-size: 2vw;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .album {
+                width: 45%; /* Mobile-friendly */
+            }
+            .album-info {
+                font-size: 3vw;
+            }
+        }
     </style>
 </head>
 <body>
@@ -45,25 +131,48 @@
         <h1 style="font-size: 6em"> </h1>
     </div>
     
-    <div class="container my-5">
-        <h2>Music Projects</h2>
-        <div id="albumCarousel" class="carousel slide" data-bs-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="images/album1.jpg" class="d-block w-100" alt="Album 1">
-                </div>
-                <div class="carousel-item">
-                    <img src="images/album2.jpg" class="d-block w-100" alt="Album 2">
+    <div class="discography-section">
+        <h2>Discography</h2>
+        <div class="album-section">
+            <div class="album">
+                <img src="assets/images/album_covers/nextchapter.jpg" alt="Next Chapter">
+                <div class="album-info">
+                    <h3>Next Chapter</h3>
+                    <p>2024 • Vedo</p>
                 </div>
             </div>
-            <a class="carousel-control-prev" href="#albumCarousel" role="button" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#albumCarousel" role="button" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
+            <div class="album">
+                <img src="assets/images/album_covers/chupacabra.jpg" alt="Chupacabra">
+                <div class="album-info">
+                    <h3>Chupacabra</h3>
+                    <p>2024 • JasonMartin, DJ Quik</p>
+                </div>
+            </div>
+            <div class="album">
+                <img src="assets/images/album_covers/ashlandcity.jpeg" alt="Ashland City">
+                <div class="album-info">
+                    <h3>Ashland City</h3>
+                    <p>2024 • Chase Bryant</p>
+                </div>
+            </div>
+            <div class="album">
+                <img src="assets/images/album_covers/foggymirror.jpeg" alt="Foggy Mirror">
+                <div class="album-info">
+                    <h3>Foggy Mirror</h3>
+                    <p>2018 • Max Wright</p>
+                </div>
+            </div>
+            <div class="album">
+                <img src="assets/images/album_covers/nothingtoyou.jpeg" alt="Nothing To You">
+                <div class="album-info">
+                    <h3>Nothing To You</h3>
+                    <p>2016 • Sujene</p>
+                </div>
+            </div>
         </div>
     </div>
+    
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
