@@ -1,179 +1,278 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Projects</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Music</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
-    <style>
-        @font-face { font-family: Jura; src: url('assets/Jura-VariableFont_wght.ttf')}
-        body {  
-            font-family: Jura;
-            background-color: rgb(23, 23, 23);
+        <style>
+            @font-face { font-family: Jura; src: url('assets/Jura-VariableFont_wght.ttf')}
+            body {  
+                font-family: Jura;
+                background-color: rgb(23, 23, 23);
+                color: whitesmoke;
+            }
+            .header {
+                text-align: center;
+                padding: 20em;
+                background: url('assets/images/studio2bw_edit.jpg') center/cover no-repeat;
+                color: rgb(255, 252, 252);
+            }
+            .discography-section {
+                text-align: center;
+                padding: 40px 5%; /* Adds spacing on the sides */
+            }
+
+            .discography-section h2 {
+                font-size: 2rem;
+                margin-bottom: 20px;
+            }
+
+            .album-section {
+                display: flex;
+                justify-content: center;
+                gap: 30px; /* More space between albums */
+                padding: 20px;
+                flex-wrap: wrap; /* Keeps layout responsive */
+            }
+
+            .album {
+                position: relative;
+                overflow: hidden;
+                width: 15%; /* Reduced size while maintaining aspect ratio */
+                min-width: 150px; /* Prevents albums from getting too small on small screens */
+                border-radius: 10px;
+            }
+
+            .album img {
+                width: 100%;
+                display: block;
+                border-radius: 10px;
+                transition: opacity 0.3s ease-in-out;
+            }
+
+            .album-info {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0, 0, 0, 0.7);
+                color: white;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                opacity: 0;
+                transition: opacity 0.3s ease-in-out;
+                text-align: center;
+                border-radius: 10px;
+                font-size: 1.2vw; /* Makes text scale with the album size */
+            }
+
+            .album:hover img {
+                opacity: 0.3;
+            }
+
+            .album:hover .album-info {
+                opacity: 1;
+            }
+
+            @media (max-width: 1024px) {
+                .album {
+                    width: 20%; /* Slightly larger on smaller screens */
+                }
+                .album-info {
+                    font-size: 1.5vw;
+                }
+            }
+
+            @media (max-width: 768px) {
+                .album {
+                    width: 30%; /* Stacks better on tablets */
+                }
+                .album-info {
+                    font-size: 2vw;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .album {
+                    width: 45%; /* Mobile-friendly */
+                }
+                .album-info {
+                    font-size: 3vw;
+                }
+            }
+
+            .about-img {
+                max-width: 100%; /* Ensures responsiveness */
+                height: auto; /* Keeps aspect ratio */
+                max-height: 80%; /* Adjust as needed */
+                
+            }
+
+            .about-me-wrapper {
+                background-color: black;
+                width: 100%;
+                padding: 50px 0; /* Adds space above and below */
+            }
+
+            .about-me {
+                color: whitesmoke;
+                font-size: 1.2em;
+                margin: auto; /* Centers the section */
+                max-width: 1200px; /* Limits width for readability */
+            }
+
+            .footer {
+            text-align: center;
+            font-size: 0.8em;
+            padding: 1.2em;
             color: whitesmoke;
-        }
-        .header {
+            background-color: black;
+            }
+
+            .fa {
+            padding:0.2em;
+            font-size: 1.6em;
+            width: 1.5em;
             text-align: center;
-            padding: 20em;
-            background: url('assets/images/studio2bw.jpg') center/cover no-repeat;
-            color: rgb(255, 252, 252);
-        }
-        .discography-section {
-            text-align: center;
-            padding: 40px 5%; /* Adds spacing on the sides */
-        }
-
-        .discography-section h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .album-section {
-            display: flex;
-            justify-content: center;
-            gap: 30px; /* More space between albums */
-            padding: 20px;
-            flex-wrap: wrap; /* Keeps layout responsive */
-        }
-
-        .album {
-            position: relative;
-            overflow: hidden;
-            width: 15%; /* Reduced size while maintaining aspect ratio */
-            min-width: 150px; /* Prevents albums from getting too small on small screens */
-            border-radius: 10px;
-        }
-
-        .album img {
-            width: 100%;
-            display: block;
-            border-radius: 10px;
-            transition: opacity 0.3s ease-in-out;
-        }
-
-        .album-info {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            opacity: 0;
-            transition: opacity 0.3s ease-in-out;
-            text-align: center;
-            border-radius: 10px;
-            font-size: 1.2vw; /* Makes text scale with the album size */
-        }
-
-        .album:hover img {
-            opacity: 0.3;
-        }
-
-        .album:hover .album-info {
-            opacity: 1;
-        }
-
-        @media (max-width: 1024px) {
-            .album {
-                width: 20%; /* Slightly larger on smaller screens */
+            text-decoration: none;
+            color: white
             }
-            .album-info {
-                font-size: 1.5vw;
+        </style>
+    </head>
+    <body>
+        <style>
+            .navbar {
+                background-color: black !important; /* Ensures black background */
+                border: none; /* Removes any border */
             }
-        }
+            .navbar a {
+                color: white !important; /* Ensures navbar links are white */
+            }
+        </style>
+        <nav class="navbar navbar-expand-lg">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="index.html">Home</a>
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="music.html">Music</a></li>
+                    <li class="nav-item"><a class="nav-link" href="audio-tech.html">Audio Tech</a></li>
+                </ul>
+            </div>
+        </nav>
 
-        @media (max-width: 768px) {
-            .album {
-                width: 30%; /* Stacks better on tablets */
-            }
-            .album-info {
-                font-size: 2vw;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .album {
-                width: 45%; /* Mobile-friendly */
-            }
-            .album-info {
-                font-size: 3vw;
-            }
-        }
-    </style>
-</head>
-<body>
-    <style>
-        .navbar {
-            background-color: black !important; /* Ensures black background */
-            border: none; /* Removes any border */
-        }
-        .navbar a {
-            color: white !important; /* Ensures navbar links are white */
-        }
-    </style>
-    <nav class="navbar navbar-expand-lg">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="index.html">Home</a>
-            <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link" href="music.html">Music</a></li>
-                <li class="nav-item"><a class="nav-link" href="audio-tech.html">Audio Tech</a></li>
-            </ul>
+        <div class="header">
+            <h1 style="font-size: 6em"> </h1>
         </div>
-    </nav>
-
-    <div class="header">
-        <h1 style="font-size: 6em"> </h1>
-    </div>
-    
-    <div class="discography-section">
-        <h2>Discography</h2>
-        <div class="album-section">
-            <div class="album">
-                <img src="assets/images/album_covers/nextchapter.jpg" alt="Next Chapter">
-                <div class="album-info">
-                    <h3>Next Chapter</h3>
-                    <p>2024 • Vedo</p>
+        
+        <div class="discography-section">
+            <h2>Discography</h2>
+            <div class="album-section">
+                <div class="album">
+                    <img src="assets/images/album_covers/nextchapter.jpg" alt="Next Chapter">
+                    <div class="album-info">
+                        <h3>Next Chapter</h3>
+                        <p>2024 • Vedo</p>
+                    </div>
                 </div>
-            </div>
-            <div class="album">
-                <img src="assets/images/album_covers/chupacabra.jpg" alt="Chupacabra">
-                <div class="album-info">
-                    <h3>Chupacabra</h3>
-                    <p>2024 • JasonMartin, DJ Quik</p>
+                <div class="album">
+                    <img src="assets/images/album_covers/chupacabra.jpg" alt="Chupacabra">
+                    <div class="album-info">
+                        <h3>Chupacabra</h3>
+                        <p>2024 • JasonMartin, DJ Quik</p>
+                    </div>
                 </div>
-            </div>
-            <div class="album">
-                <img src="assets/images/album_covers/ashlandcity.jpeg" alt="Ashland City">
-                <div class="album-info">
-                    <h3>Ashland City</h3>
-                    <p>2024 • Chase Bryant</p>
+                <div class="album">
+                    <img src="assets/images/album_covers/ashlandcity.jpeg" alt="Ashland City">
+                    <div class="album-info">
+                        <h3>Ashland City</h3>
+                        <p>2024 • Chase Bryant</p>
+                    </div>
                 </div>
-            </div>
-            <div class="album">
-                <img src="assets/images/album_covers/foggymirror.jpeg" alt="Foggy Mirror">
-                <div class="album-info">
-                    <h3>Foggy Mirror</h3>
-                    <p>2018 • Max Wright</p>
+                <div class="album">
+                    <img src="assets/images/album_covers/foggymirror.jpeg" alt="Foggy Mirror">
+                    <div class="album-info">
+                        <h3>Foggy Mirror</h3>
+                        <p>2025 • Max Wright</p>
+                    </div>
                 </div>
-            </div>
-            <div class="album">
-                <img src="assets/images/album_covers/nothingtoyou.jpeg" alt="Nothing To You">
-                <div class="album-info">
-                    <h3>Nothing To You</h3>
-                    <p>2016 • Sujene</p>
+                <div class="album">
+                    <img src="assets/images/album_covers/justonething.png" alt="Just One Thing">
+                    <div class="album-info">
+                        <h3>Just One Thing</h3>
+                        <p>2023 • Keenan Bruni</p>
+                    </div>
+                </div>
+                <div class="album">
+                    <img src="assets/images/album_covers/nothingtoyou.jpeg" alt="Nothing To You">
+                    <div class="album-info">
+                        <h3>Nothing To You</h3>
+                        <p>2022 • Sujene</p>
+                    </div>
+                </div> 
+                <div class="album">
+                    <img src="assets/images/album_covers/tripnotes.jpg" alt="Trip Notes">
+                    <div class="album-info">
+                        <h3>Trip Notes</h3>
+                        <p>2020 • TFREE</p>
+                    </div>
+                </div>
+                <div class="album">
+                    <img src="assets/images/album_covers/afterimage.jpg" alt="Afterimage">
+                    <div class="album-info">
+                        <h3>Afterimage</h3>
+                        <p>2024 • Vanity Nicole</p>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-    
-    
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-</body>
-</html>
+        <div class="about-me-wrapper">
+            <section class="about-me container my-5">
+                <h2 class="text-center mb-4">About Me</h2>
+                <div class="row align-items-center">
+                    <div class="col-md-4 text-center">
+                        <img src="assets/images/Gtr Purple Edited.jpg" alt="About Me Image" class="img-fluid rounded about-img">
+                    </div>
+                    <div class="col-md-8">
+                        <p>
+                            My first musical experience was playing classical piano as a kid, but I started producing music in high school
+                            when my music teacher showed me Reason. In very high school fashion, I mostly made rap beats for my friends at 
+                            the time, but I spent a long time honing my production and mixing skills culminating in two albums 
+                            which I released in 2019 and 2020.
+                        </p>
+                        <br>
+                        <p>
+                            I entered UCLA in 2021 as a Music Industry student and began working with artists more seriously. In 2023, I worked 
+                            as an assistant engineer at Suspect Studios in San Jose, CA. Then, in 2024, I worked under Grammy-nominated mix engineer 
+                            Luke Argilla and further developed my mixing in both stereo and Dolby Atmos. I'm grateful to have worked on so many exciting 
+                            projects in these roles.
+                        </p>
+                        <br>
+                        <p>
+                            I'm proficient in Pro Tools, Ableton, Reason, stereo and Atmos mixing, and I play piano, guitar, and bass (hopefully drums next!). 
+                            Though I now spend most of my time on tech development for musical tasks, I still mix and produce for several clients and 
+                            always enjoy working with new people when I can! Please feel free to reach out by email or the form on my home page.
+                        </p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <!-- Add font awesome icons -->
+            <a href="https://www.linkedin.com/in/thomas-freedman/" class="fa fa-linkedin"></a>
+            <a href="https://github.com/Thomas-Freedman" class="fa fa-github"></a>
+            <a href="https://www.instagram.com/tfreed.man/" class="fa fa-instagram"></a> <br>
+            <a href="mailto:tnfreedman@gmail.com">tnfreedman@gmail.com<a>
+            <p>&copy 2025 Thomas Freedman<br>
+        </footer>
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
