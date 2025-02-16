@@ -42,6 +42,21 @@
             color: white
         }
 
+        hr {
+            display: block;
+            margin-top: 0.5em;
+            margin-bottom: 0.5em;
+            margin-left: auto;
+            margin-right: auto;
+            border-style: inset;
+            border-width: 1px;
+            max-width: 80%;
+        }
+        hr.double {
+            border-top: 4px double;
+            border-bottom: none;
+        }
+
     </style>
 </head>
 <body>
@@ -72,10 +87,32 @@
     <div class="header">
         <h1 style="font-size: 6em">  </h1>
     </div>
+
+    <!-- Welcome -->
+    <div class="container text-center my-5">
+        <div>
+            <h1>Hello! I'm Thomas.</h1>
+        </div>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-md-9">
+                <p>
+                    I'm an electrical and computer engineering student at UCLA with a passion for both music and tech.
+                    My goal is to create tools for musicians that make being creative easier — without replacing us. Otherwise,
+                    I also just like making music.
+                    <br><br>
+                    If you need production, mixing, or mastering for your project, have an idea for a piece of audio tech you'd 
+                    like to see, or just want to chat, please feel free to reach out!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <hr class="double">
     
     <!-- Contact Form -->
     <section id="contact" class="container my-5">
-        <h2>Contact Me</h2>
+        <h2 style="text-align: center">Contact Me</h2>
         <form action="https://formspree.io/f/myzkdyqz" method="POST">
             <div class="mb-3">
                 <label for="name" class="form-label">Name</label>
