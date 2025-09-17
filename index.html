@@ -109,6 +109,90 @@
     </div>
 
     <hr class="double">
+
+    <!-- Media Gallery -->
+    <section id="media-gallery" class="container my-5">
+
+    <div id="mediaCarousel" class="carousel slide mx-auto" data-bs-ride="carousel" data-bs-interval="5000" style="max-width: 920px;" data-bs-pause="hover">
+        <div class="carousel-inner text-center">
+
+        <div class="carousel-item active">
+            <a href="https://samueli.ucla.edu/ucla-samueli-masters-student-strikes-a-chord-between-music-and-engineering/" target="_blank">
+            <img src="assets/images/ucla_article_thumbnail.png" class="d-block mx-auto rounded shadow" style="max-width: 100%;" alt="UCLA Engineering Profile">
+            </a>
+            <div class="mt-2">
+            <!-- <p>UCLA Engineering Profile</p> -->
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <a href="https://www.yamaha.com/en/tech-design/research/internship/" target="_blank">
+            <img src="assets/images/yamaha_intern_thumbnail.png" class="d-block mx-auto rounded shadow" style="max-width: 100%;" alt="Yamaha Internship Program">
+            </a>
+            <div class="mt-2">
+            <!-- <p>Yamaha Internship Recruitment Page</p> -->
+            </div>
+        </div>
+
+        <div class="carousel-item">
+            <a href="https://www.wazoconnect.com/ucla" target="_blank">
+            <img src="assets/images/wazo_thumbnail.png" class="d-block mx-auto rounded shadow" style="max-width: 100%;" alt="Wazo Connect UCLA">
+            </a>
+            <div class="mt-2">
+            <!-- <p>Click to visit the site</p> -->
+            </div>
+        </div>
+
+        </div>
+
+        <!-- Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#mediaCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#mediaCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+        </button>
+
+        <!-- Indicators -->
+        <div class="carousel-indicators mt-3">
+        <button type="button" data-bs-target="#mediaCarousel" data-bs-slide-to="0" class="active"></button>
+        <button type="button" data-bs-target="#mediaCarousel" data-bs-slide-to="1"></button>
+        <button type="button" data-bs-target="#mediaCarousel" data-bs-slide-to="2"></button>
+        </div>
+    </div>
+    </section>
+
+    <!-- Extra CSS -->
+    <style>
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 5%;             
+    }
+
+    .carousel-control-prev {
+        left: -100px;          
+    }
+
+    .carousel-control-next {
+        right: -100px;         
+    }
+
+    .carousel-inner img {
+        width: 100%;
+        height: 500px;       /* pick a height that looks good */
+        object-fit: cover;   /* crop while keeping aspect ratio */
+        border-radius: 10px; /* keep your rounded corners */
+    }
+
+    /* Place indicators (dots) below the carousel instead of overlaying */
+    .carousel-indicators {
+        position: static;
+    }
+    </style>
+
+    <hr class="double">
     
     <!-- Contact Form -->
     <section id="contact" class="container my-5">
