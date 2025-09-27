@@ -87,6 +87,32 @@
         </div>
     </nav>
 
+    <div class="section-dark_wrapper">
+        <div class="container my-5">
+            <div>
+                <h1>Batch Loudness for Dolby Atmos Album Assembler</h1>
+                <br>
+                <br>
+            </div>
+            <div class="row align-items-center">
+                <div class="col-md-6 text-center">
+                    <img src="/assets/images/DA3.png" alt="DA3 Batch Loudness Image" class="img-fluid rounded about-img">
+                </div>
+                <div class="col-md-6">
+                    <p>
+                        A script for the Soundflow platform which automates the process of loudness analysis in the Dolby
+                        Atmos Album Assembler. I wrote this function alongside Dolby Atmos mix engineer Luke Argilla to address a pain point
+                        in his workflow. The impetus for this project was that for projects with either a large number of tracks
+                        or particularly long tracks, the process of individually analyzing each track can be prohibitively time consuming. 
+                        With this script, an Atmos mastering engineer can set up their DA3 session and walk away to do other work while every
+                        track in the session is analyzed. The code for this project is <a href="https://github.com/Thomas-Freedman/DA3-Batch-Loudness">hosted on my Github</a>.  
+                        Feel free to use it, tweak it, and let me know if it's helped you at all!
+                    </p>
+                </div>  
+            </div>
+        </div>
+    </div>
+
     <div class="section-light_wrapper">
         <div class="container my-5">
             <div>
@@ -98,44 +124,51 @@
                
                 <div class="col-md-6">
                     <p>
-                        Text2Synth is a software instrument synthesizer which, in addition to functioning as a traditional synth,
-                        can also generate synth patches from qualitative text input. It is still in development, and thus the system
-                        architecture is subject to change, but the text-to-synth model will likely be based on a transformer encoder-decoder 
-                        architecture and will employ the JUCE framework for the GUI.
-                    </p>
+                        Text2Synth is a wrapper for existing synthesizer plugins which allows a user to generate synth patches from qualitative text
+                        descriptions. The system employs soundflow for DAW integration and a finetuned GPT model for patch generation (we found that LLMs 
+                        still generally outperformed more specific text/audio understanding models like CLAP for signifcantly lower development cost).
                     <p>
                         As a musician myself, my goal with this project is not to create a tool to replace or subvert traditional sound design 
                         methods, but rather to give artists of various levels of experience the opportunity to experiment intuitively with new 
-                        synth patches while still allowing full technical   autonomy. 
+                        synth patches while still allowing full technical autonomy. 
+                    </p>
+                    <p>
+                        Thanks to generous contributions from Arturia, a full demo exists using the Arturia Prophet-V plugin. I have not published the code for this project, 
+                        but if you are interested in trying it or discussing the project, please let me know!
                     </p>
                 </div>
                 <div class="col-md-6 text-center">
-                    <img src="/assets/images/Text2Synth.png" alt="Project 1 Image" class="img-fluid rounded about-img">
+                    <img src="/assets/images/Text2Synth.png" alt="T2S Image" class="img-fluid rounded about-img">
                 </div>
             </div>
         </div>
     </div>
-    
+
     <div class="section-dark_wrapper">
         <div class="container my-5">
             <div>
-                <h1>Batch Loudness for Dolby Atmos Album Assembler</h1>
+                <h1>Information Weighted Word Error Rate</h1>
                 <br>
                 <br>
             </div>
             <div class="row align-items-center">
                 <div class="col-md-6 text-center">
-                    <img src="/assets/images/DA3.png" alt="Project 2 Image" class="img-fluid rounded about-img">
+                    <img src="/assets/images/IWWER.png" alt="IWWER Image" class="img-fluid rounded about-img">
                 </div>
                 <div class="col-md-6">
                     <p>
-                        A script for the Soundflow platform which automates the process of loudness analysis in the Dolby
-                        Atmos Album Assembler. I wrote this function alongside Dolby Atmos mix engineer Luke Argilla to address a pain point
-                        in his workflow. The impetus for this project was that for projects with either a large number of tracks
-                        or particularly long tracks, the process of individually analyzing each track can be prohibitively time consuming. 
-                        With this script, an Atmos mastering engineer can set up their DA3 session and walk away to do other work while every
-                        track in the session is analyzed. The code for this project is <a href="https://github.com/Thomas-Freedman/DA3-Batch-Loudness">hosted on my Github</a>.  
-                        Feel free to use it, tweak it, and let me know if it's helped you at all!
+                        Word error rate (WER) is a commonly used metric for determining the efficacy of automatic speech recognition models. The simple formula for word error rate tallies substitutions, insertions,
+                        and deletions and divides the total number of errors by the number of words in the reference transcription (S+D+I / N). This is computationally simple, but it fails to capture effective quality
+                        of the predicted transcript because it treats all errors as equal. 
+                    </p>
+                    <p>
+                        This python notebook demonstrates an experimental "Information Weighted Word Error Rate" which weights traditional WER with semantic relevance of mispredicted words. After computing a word position aligned matrix of all substitutions, insertions, and deletions using the Levenshtein Distance Algorithm, the Gemini API is used to generate a weight vector 
+                        for the semantic relevance of each word. This weight vector is multiplied with the SDI matrix and the IWWER is calculated as the sum of all nonzero elements / number of words in the reference
+                        transcript. 
+                    </p>
+                    <p>
+                        The code for this project is <a href="https://github.com/Thomas-Freedman/weighted_WER">hosted on my Github</a>. It's more of an exploration and not a suitable for 
+                        practical use in training a model, but feel free to check it out!
                     </p>
                 </div>  
             </div>
