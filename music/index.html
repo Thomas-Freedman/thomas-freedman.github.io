@@ -106,10 +106,10 @@
 
             @media (max-width: 480px) {
                 .album {
-                    width: 45%; /* Mobile-friendly */
+                    width: 75%; /* Mobile-friendly, single column */
                 }
                 .album-info {
-                    font-size: 3vw;
+                    font-size: 4vw;
                 }
             }
 
@@ -118,6 +118,16 @@
                 height: auto; /* Keeps aspect ratio */
                 max-height: 80%; /* Adjust as needed */
                 
+            }
+
+            @media (max-width: 768px) {
+                .about-me .col-md-4 {
+                    margin-bottom: 1.5em;
+                }
+                .about-me .col-md-8 {
+                    padding-left: 1.5em;
+                    padding-right: 1.5em;
+                }
             }
 
             .about-me-wrapper {
@@ -215,6 +225,13 @@
                     <div class="album-info">
                         <h3>Foggy Mirror</h3>
                         <p>2025 • Max Wright</p>
+                    </div>
+                </div>
+                <div class="album">
+                    <img src="/assets/images/album_covers/skinnydip.png" alt="Skinny Dip">
+                    <div class="album-info">
+                        <h3>Skinny Dip</h3>
+                        <p>2026 • Chloe Colligan</p>
                     </div>
                 </div>
                 <div class="album">

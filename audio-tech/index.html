@@ -65,6 +65,15 @@
             max-height: 80%; /* Adjust as needed */
                 
         }
+
+        @media (max-width: 768px) {
+            .about-img {
+                margin-bottom: 1.5em;
+            }
+            .header {
+                padding: 8em 1em;
+            }
+        }
     </style>
 </head>
 <body>
@@ -133,7 +142,7 @@
             </div>
             <div class="row align-items-center">
                
-                <div class="col-md-6">
+                <div class="col-md-6 order-2 order-md-1">
                     <p>
                         Text2Synth is a wrapper for existing synthesizer plugins which allows a user to generate synth patches from qualitative text
                         descriptions. The system employs soundflow for DAW integration and a finetuned GPT model for patch generation (we found that LLMs 
@@ -148,7 +157,7 @@
                         but if you are interested in trying it or discussing the project, please let me know!
                     </p>
                 </div>
-                <div class="col-md-6 text-center">
+                <div class="col-md-6 text-center order-1 order-md-2">
                     <img src="/assets/images/Text2Synth.png" alt="T2S Image" class="img-fluid rounded about-img">
                 </div>
             </div>
