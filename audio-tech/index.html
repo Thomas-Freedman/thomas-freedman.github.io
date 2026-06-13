@@ -8,94 +8,200 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
     <style>
-
-        body {  
+        body {
             font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
             background-color: rgb(23, 23, 23);
             color: whitesmoke;
             font-size: 1.2em;
-        }
-        .header {
-            text-align: center;
-            padding: 350px;
-            background: url('assets/images/headshot.jpg') center/cover no-repeat;
-            color: rgb(255, 252, 252);
+            overflow-x: hidden;
         }
 
+        /* ---- Navbar ---- */
+        .navbar { background-color: black !important; border: none; }
+        .navbar a { color: white !important; }
+        .navbar-toggler { border-color: rgba(255,255,255,0.3); }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* ---- Page Header ---- */
+        .page-header {
+            text-align: center;
+            padding: 3rem 1rem 0.5rem;
+        }
+        .page-header h1 {
+            font-size: 2.4rem;
+            letter-spacing: 0.04em;
+        }
+        .page-header .subtitle {
+            color: rgba(245,245,245,0.45);
+            font-size: 0.82rem;
+            margin-top: 0.3rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        /* ---- Carousel ---- */
+        .carousel-section { padding: 1.5rem 0 0.5rem; }
+
+        .carousel-viewport {
+            width: 100%;
+            overflow: hidden;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            padding: 1.8rem 0;
+        }
+        .carousel-viewport.is-dragging { cursor: grabbing; }
+
+        .carousel-track {
+            display: flex;
+            align-items: center;
+            transition: transform 0.52s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: transform;
+        }
+        .carousel-track.no-anim { transition: none !important; }
+
+        .project-slide {
+            flex: 0 0 55%;
+            padding: 0 1.2%;
+            transition: opacity 0.45s ease, transform 0.45s ease, filter 0.45s ease;
+            opacity: 0.27;
+            transform: scale(0.87);
+            filter: brightness(0.5);
+            cursor: pointer;
+        }
+        .project-slide.active {
+            opacity: 1;
+            transform: scale(1);
+            filter: brightness(1);
+            cursor: default;
+        }
+        .project-slide img {
+            width: 100%;
+            height: 310px;
+            object-fit: cover;
+            border-radius: 14px;
+            box-shadow: 0 14px 50px rgba(0,0,0,0.7);
+            display: block;
+            pointer-events: none;
+            -webkit-user-drag: none;
+        }
+        .project-slide img.img-contain {
+            object-fit: contain;
+            background-color: black;
+            padding: 0 6%;
+        }
+
+        /* ---- Controls ---- */
+        .carousel-controls {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 1.5rem;
+            margin-top: 0.8rem;
+        }
+
+        .c-arrow {
+            background: rgba(255,255,255,0.07);
+            border: 1px solid rgba(255,255,255,0.18);
+            color: white;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.22s, border-color 0.22s, opacity 0.22s;
+            font-size: 1.05rem;
+            flex-shrink: 0;
+        }
+        .c-arrow:hover { background: rgba(255,255,255,0.16); border-color: rgba(255,255,255,0.36); }
+        .c-arrow.disabled { opacity: 0.2; pointer-events: none; }
+
+        .c-dots { display: flex; gap: 8px; }
+        .c-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.22);
+            cursor: pointer;
+            transition: background 0.3s, transform 0.3s;
+        }
+        .c-dot.active {
+            background: rgba(255,255,255,0.88);
+            transform: scale(1.4);
+        }
+
+        /* ---- Project Info ---- */
+        .info-section {
+            max-width: 820px;
+            margin: 2.5rem auto 0;
+            padding: 0 2rem 5rem;
+            position: relative;
+        }
+
+        .info-panel {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.38s ease, transform 0.38s ease;
+            pointer-events: none;
+        }
+        .info-panel.active {
+            opacity: 1;
+            transform: translateY(0);
+            pointer-events: auto;
+        }
+
+        .info-panel h2 {
+            font-size: 1.5rem;
+            margin-bottom: 0.8rem;
+        }
+        .info-panel p {
+            color: rgba(245,245,245,0.82);
+            line-height: 1.74;
+            margin-bottom: 0.9rem;
+        }
+        .info-panel a { color: rgba(185,195,255,0.9); }
+
+        /* ---- Footer ---- */
         .footer {
             text-align: center;
             font-size: 0.8em;
-            padding: 1.2em;
+            padding: 1.8em 1em 1.2em;
             color: whitesmoke;
-            /* background-color: black; */
+            border-top: 1px solid rgba(255,255,255,0.08);
         }
-
-        /* Style all font awesome icons */
         .fa {
-            padding:0.2em;
+            padding: 0.2em;
             font-size: 1.6em;
             width: 1.5em;
             text-align: center;
             text-decoration: none;
-            color: white
+            color: white;
         }
 
-        .section-dark_wrapper {
-            background-color: black;
-            width: 100%;
-            padding: 50px 0; /* Adds space above and below */
-        }
-
-        .section-dark {
-            color: whitesmoke;
-            font-size: 1.2em;
-            margin: auto; /* Centers the section */
-             max-width: 1200px; /* Limits width for readability */
-        }
-
-        .section-light_wrapper {
-            background-color: rgb(23, 23, 23);
-            width: 100%;
-            padding: 50px 0; /* Adds space above and below */
-        }
-
-        .about-img {
-            max-width: 80%; /* Ensures responsiveness */
-            height: auto; /* Keeps aspect ratio */
-            max-height: 80%; /* Adjust as needed */
-                
-        }
-
+        /* ---- Responsive ---- */
         @media (max-width: 768px) {
-            .about-img {
-                margin-bottom: 1.5em;
-            }
-            .header {
-                padding: 8em 1em;
-            }
+            .project-slide { flex: 0 0 82%; padding: 0 2%; }
+            .project-slide img { height: 210px; }
+            .info-section { padding: 0 1.2rem 5rem; }
         }
     </style>
 </head>
 <body>
-    <style>
-        .navbar {
-            background-color: black !important; /* Ensures black background */
-            border: none; /* Removes any border */
-        }
-        .navbar a {
-            color: white !important; /* Ensures navbar links are white */
-        }
-        .navbar-toggler {
-            border-color: rgba(255,255,255,0.3);
-        }
-        .navbar-toggler-icon {
-            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
-        }
-    </style>
+
+    <!-- Navbar -->
     <nav class="navbar navbar-expand-lg">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">Home</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
@@ -107,103 +213,357 @@
         </div>
     </nav>
 
-    <div class="section-dark_wrapper">
-        <div class="container my-5">
-            <div>
-                <h1>Batch Loudness for Dolby Atmos Album Assembler</h1>
-                <br>
-                <br>
-            </div>
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center">
-                    <img src="/assets/images/DA3.png" alt="DA3 Batch Loudness Image" class="img-fluid rounded about-img">
-                </div>
-                <div class="col-md-6">
-                    <p>
-                        A script for the Soundflow platform which automates the process of loudness analysis in the Dolby
-                        Atmos Album Assembler. I wrote this function alongside Dolby Atmos mix engineer Luke Argilla to address a pain point
-                        in his workflow. The impetus for this project was that for projects with either a large number of tracks
-                        or particularly long tracks, the process of individually analyzing each track can be prohibitively time consuming. 
-                        With this script, an Atmos mastering engineer can set up their DA3 session and walk away to do other work while every
-                        track in the session is analyzed. The code for this project is <a href="https://github.com/Thomas-Freedman/DA3-Batch-Loudness">hosted on my Github</a>.  
-                        Feel free to use it, tweak it, and let me know if it's helped you at all!
-                    </p>
-                </div>  
-            </div>
-        </div>
+    <!-- Page Header -->
+    <div class="page-header">
+        <h1>Audio Tech Projects</h1>
     </div>
 
-    <div class="section-light_wrapper">
-        <div class="container my-5">
-            <div>
-                <h1>Text2Synth</h1>
-                <br>
-                <br>
-            </div>
-            <div class="row align-items-center">
-               
-                <div class="col-md-6 order-2 order-md-1">
-                    <p>
-                        Text2Synth is a wrapper for existing synthesizer plugins which allows a user to generate synth patches from qualitative text
-                        descriptions. The system employs soundflow for DAW integration and a finetuned GPT model for patch generation (we found that LLMs 
-                        still generally outperformed more specific text/audio understanding models like CLAP for signifcantly lower development cost).
-                    <p>
-                        As a musician myself, my goal with this project is not to create a tool to replace or subvert traditional sound design 
-                        methods, but rather to give artists of various levels of experience the opportunity to experiment intuitively with new 
-                        synth patches while still allowing full technical autonomy. 
-                    </p>
-                    <p>
-                        Thanks to generous contributions from Arturia, a full demo exists using the Arturia Prophet-V plugin. I have not published the code for this project, 
-                        but if you are interested in trying it or discussing the project, please let me know!
-                    </p>
+    <!-- Carousel -->
+    <section class="carousel-section">
+        <div class="carousel-viewport" id="carouselViewport">
+            <div class="carousel-track" id="carouselTrack">
+                
+                <!-- Slide 0: Select the Best Mic -->
+                <div class="project-slide" data-index="0">
+                    <img src="/assets/images/soundflow_best_mic.png" alt="Soundflow Select the Best Mic">
                 </div>
-                <div class="col-md-6 text-center order-1 order-md-2">
-                    <img src="/assets/images/Text2Synth.png" alt="T2S Image" class="img-fluid rounded about-img">
+
+                <!-- Slide 1: DA3 Batch Loudness -->
+                <div class="project-slide" data-index="1">
+                    <img src="/assets/images/DA3.png" alt="Batch Loudness for Dolby Atmos Album Assembler">
                 </div>
+
+                <!-- Slide 2: Text2Synth -->
+                <div class="project-slide" data-index="2">
+                    <img src="/assets/images/Text2Synth.png" alt="Text2Synth">
+                </div>
+
+                <!-- Slide 3: IWWER -->
+                <div class="project-slide" data-index="3">
+                    <img src="/assets/images/IWWER.png" alt="Information Weighted Word Error Rate" class="img-contain">
+                </div>
+
+                <!-- ================================================================
+                     NEW PROJECT TEMPLATE
+                     To add a new project:
+                       1. Copy the block below and paste above this comment
+                       2. Update data-index, img src, and alt text
+                       3. Add a dot in .c-dots below (copy any existing one, increment data-dot)
+                       4. Add a matching .info-panel in the info-section below
+                       5. The script detects slide count automatically — no JS changes needed
+
+                <div class="project-slide" data-index="4">
+                    <img src="/assets/images/YOUR_IMAGE.png" alt="Your Project Name">
+                </div>
+
+                ================================================================ -->
+
             </div>
         </div>
-    </div>
 
-    <div class="section-dark_wrapper">
-        <div class="container my-5">
-            <div>
-                <h1>Information Weighted Word Error Rate</h1>
-                <br>
-                <br>
+        <!-- Controls -->
+        <div class="carousel-controls">
+            <button class="c-arrow" id="prevBtn" aria-label="Previous">&#8592;</button>
+            <div class="c-dots" id="cDots">
+                <div class="c-dot" data-dot="0"></div>
+                <div class="c-dot" data-dot="1"></div>
+                <div class="c-dot" data-dot="2"></div>
+                <div class="c-dot" data-dot="3"></div>
+                <!-- Add one dot per new project:
+                <div class="c-dot" data-dot="3"></div>
+                -->
             </div>
-            <div class="row align-items-center">
-                <div class="col-md-6 text-center">
-                    <img src="/assets/images/IWWER.png" alt="IWWER Image" class="img-fluid rounded about-img">
-                </div>
-                <div class="col-md-6">
-                    <p>
-                        Word error rate (WER) is a commonly used metric for determining the efficacy of automatic speech recognition models. The simple formula for word error rate tallies substitutions, insertions,
-                        and deletions and divides the total number of errors by the number of words in the reference transcription (S+D+I / N). This is computationally simple, but it fails to capture effective quality
-                        of the predicted transcript because it treats all errors as equal. 
-                    </p>
-                    <p>
-                        This python notebook demonstrates an experimental "Information Weighted Word Error Rate" which weights traditional WER with semantic relevance of mispredicted words. After computing a word position aligned matrix of all substitutions, insertions, and deletions using the Levenshtein Distance Algorithm, the Gemini API is used to generate a weight vector 
-                        for the semantic relevance of each word. This weight vector is multiplied with the SDI matrix and the IWWER is calculated as the sum of all nonzero elements / number of words in the reference
-                        transcript. 
-                    </p>
-                    <p>
-                        The code for this project is <a href="https://github.com/Thomas-Freedman/weighted_WER">hosted on my Github</a>. It's more of an exploration and not a suitable for 
-                        practical use in training a model, but feel free to check it out!
-                    </p>
-                </div>  
-            </div>
+            <button class="c-arrow" id="nextBtn" aria-label="Next">&#8594;</button>
         </div>
-    </div>
+    </section>
 
+    <!-- Project Info Panels -->
+    <section class="info-section" id="infoSection">
+
+        <!-- Panel 0: Select the Best Mic -->
+        <div class="info-panel" data-panel="0">
+            <h2>Soundflow Select the Best Mic</h2>
+            <p>
+                The Soundflow select the best mic tool is an hybrid ML/traditional DSP based algorithm for choosing the optimal
+                microphone for each line of recorded film, TV, or podcast dialog. Following Soundflow's integration with Avid,
+                the select the best mic tool is accessible directly in your Pro Tools sessions. I am proud to have been the lead
+                developer and researcher for this tool under the guidance of the wonderful team at Soundflow! 
+            </p>
+            <p>
+                To learn more about the select the best mic feature, visit Avid's announcement 
+                <a href="https://www.avid.com/resource-center/soundflow?utm_campaign=25-pts-2025-10-soundflow&utm_source=braze&utm_medium=email&utm_content=all&lid=0ptcuj2h19nt" target="_blank">here</a>.
+            </p>
+        </div>
+
+        <!-- Panel 1: DA3 Batch Loudness -->
+        <div class="info-panel" data-panel="1">
+            <h2>Batch Loudness for Dolby Atmos Album Assembler</h2>
+            <p>
+                A script for the Soundflow platform which automates loudness analysis in the Dolby Atmos Album Assembler.
+                I wrote this alongside Dolby Atmos mix engineer Luke Argilla to address a pain point in his workflow — for projects
+                with many tracks or particularly long ones, individually analyzing each track can be prohibitively time consuming.
+                With this script, an Atmos mastering engineer can set up their DA3 session and walk away while every track is analyzed.
+            </p>
+            <p>
+                The code is <a href="https://github.com/Thomas-Freedman/DA3-Batch-Loudness" target="_blank">hosted on my Github</a>.
+                Feel free to use it, tweak it, and let me know if it's helped you!
+            </p>
+        </div>
+
+        <!-- Panel 2: Text2Synth -->
+        <div class="info-panel" data-panel="2">
+            <h2>Text2Synth</h2>
+            <p>
+                Text2Synth is a wrapper for existing synthesizer plugins that lets users generate synth patches from qualitative text descriptions.
+                The system uses Soundflow for DAW integration and a fine-tuned GPT model for patch generation — we found that LLMs generally
+                outperformed more specialized text/audio models like CLAP at significantly lower development cost.
+            </p>
+            <p>
+                My goal is not to replace traditional sound design, but to give artists of all experience levels the ability to experiment
+                intuitively with new synth patches while retaining full technical autonomy. Thanks to generous contributions from Arturia,
+                a full demo exists using the Arturia Prophet-V plugin. The code isn't published, but feel free to reach out if you'd like
+                to try it or discuss the project!
+            </p>
+        </div>
+
+        <!-- Panel 3: IWWER -->
+        <div class="info-panel" data-panel="3">
+            <h2>Information Weighted Word Error Rate</h2>
+            <p>
+                Word error rate (WER) is a standard metric for evaluating automatic speech recognition models, computed as (S+D+I)&thinsp;/&thinsp;N —
+                substitutions, deletions, and insertions divided by total reference words. It is computationally simple but treats all errors as
+                equal, failing to capture the true perceptual quality of a transcript.
+            </p>
+            <p>
+                This Python notebook explores an "Information Weighted Word Error Rate" that weights each error by the semantic relevance of the
+                mispredicted word. After computing an alignment matrix via the Levenshtein Distance Algorithm, the Gemini API generates a semantic
+                relevance weight vector. IWWER is then the weighted sum of errors normalized by reference word count.
+            </p>
+            <p>
+                The code is <a href="https://github.com/Thomas-Freedman/weighted_WER" target="_blank">hosted on my Github</a> —
+                more of an exploration than a production tool, but feel free to check it out!
+            </p>
+        </div>
+
+        <!-- ================================================================
+             NEW PROJECT INFO TEMPLATE
+             Copy this block and fill in your content.
+             Match data-panel to the slide's data-index above.
+
+        <div class="info-panel" data-panel="4">
+            <h2>Your Project Title</h2>
+            <p>Your project description goes here.</p>
+        </div>
+
+        ================================================================ -->
+
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
-        <!-- Add font awesome icons -->
         <a href="https://www.linkedin.com/in/thomas-freedman/" class="fa fa-linkedin"></a>
         <a href="https://github.com/Thomas-Freedman" class="fa fa-github"></a>
-        <a href="https://www.instagram.com/tfreed.man/" class="fa fa-instagram"></a> <br>
-        <a href="mailto:tnfreedman@gmail.com">tnfreedman@gmail.com<a>
-        <p>&copy 2025 Thomas Freedman<br>
+        <a href="https://www.instagram.com/tfreed.man/" class="fa fa-instagram"></a><br>
+        <a href="mailto:tnfreedman@gmail.com">tnfreedman@gmail.com</a>
+        <p>&copy; 2025 Thomas Freedman</p>
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const viewport    = document.getElementById('carouselViewport');
+        const track       = document.getElementById('carouselTrack');
+        const realSlides  = Array.from(document.querySelectorAll('.project-slide'));
+        const panels      = Array.from(document.querySelectorAll('.info-panel'));
+        const dots        = Array.from(document.querySelectorAll('.c-dot'));
+        const prevBtn     = document.getElementById('prevBtn');
+        const nextBtn     = document.getElementById('nextBtn');
+        const infoSection = document.getElementById('infoSection');
+
+        const REAL_COUNT = realSlides.length;
+
+        // Clone boundary slides for seamless infinite wrapping.
+        // Final DOM layout: [clone-last] [real-0 … real-N-1] [clone-first]
+        //   virtualIdx 0    → clone of last real slide  (prepended)
+        //   virtualIdx 1..N → real slides 0..N-1
+        //   virtualIdx N+1  → clone of first real slide (appended)
+        // When the track animates into a clone, we silently jump to the
+        // matching real slide after the transition completes.
+        const clonePrev = realSlides[REAL_COUNT - 1].cloneNode(true);
+        const cloneNext = realSlides[0].cloneNode(true);
+        [clonePrev, cloneNext].forEach(c => {
+            c.removeAttribute('data-index');
+            c.classList.remove('active');
+        });
+        track.insertBefore(clonePrev, track.firstElementChild);
+        track.appendChild(cloneNext);
+
+        let allSlides  = Array.from(track.querySelectorAll('.project-slide'));
+        let current    = 0;   // logical index 0..REAL_COUNT-1
+        let virtualIdx = 1;   // DOM position into allSlides
+        let baseOffset = 0;
+        let wrapping   = false;
+
+        // ── Helpers ────────────────────────────────────────────────────────
+        function slideWidth() { return allSlides[0].offsetWidth; }
+
+        function centerOffset(domIdx) {
+            const vw = viewport.offsetWidth;
+            const sw = slideWidth();
+            return vw / 2 - domIdx * sw - sw / 2;
+        }
+
+        function updateActive() {
+            allSlides.forEach((s, i) => s.classList.toggle('active', i === virtualIdx));
+            panels.forEach((p, i)   => p.classList.toggle('active', i === current));
+            dots.forEach((d, i)     => d.classList.toggle('active', i === current));
+        }
+
+        function moveTo(domIdx, animate = true) {
+            baseOffset = centerOffset(domIdx);
+            if (!animate) track.classList.add('no-anim');
+            track.style.transform = `translateX(${baseOffset}px)`;
+            if (!animate) { track.offsetHeight; track.classList.remove('no-anim'); }
+        }
+
+        // Measure tallest info panel; size the section to avoid layout jumps.
+        function measureInfoHeight() {
+            panels.forEach(p => {
+                p.style.transition    = 'none';
+                p.style.position      = 'relative';
+                p.style.opacity       = '0';
+                p.style.transform     = 'none';
+                p.style.pointerEvents = 'none';
+            });
+            let maxH = 0;
+            panels.forEach(p => { maxH = Math.max(maxH, p.offsetHeight); });
+            panels.forEach(p => {
+                p.style.position      = 'absolute';
+                p.style.opacity       = '';
+                p.style.transform     = '';
+                p.style.pointerEvents = '';
+            });
+            setTimeout(() => panels.forEach(p => { p.style.transition = ''; }), 0);
+            infoSection.style.minHeight = (maxH + 40) + 'px';
+        }
+
+        // ── Navigation ────────────────────────────────────────────────────
+        function goNext() {
+            if (wrapping) return;
+            virtualIdx++;
+            current = (current + 1) % REAL_COUNT;
+            updateActive();
+            moveTo(virtualIdx);
+            // Landed on appended clone → silently jump to first real slide
+            if (virtualIdx === REAL_COUNT + 1) {
+                wrapping = true;
+                track.addEventListener('transitionend', function onWrap() {
+                    track.removeEventListener('transitionend', onWrap);
+                    allSlides.forEach(s => s.style.transition = 'none');
+                    virtualIdx = 1;
+                    moveTo(1, false);
+                    updateActive();
+                    track.offsetHeight; // force reflow before re-enabling transitions
+                    allSlides.forEach(s => s.style.transition = '');
+                    wrapping = false;
+                }, { once: true });
+            }
+        }
+
+        function goPrev() {
+            if (wrapping) return;
+            virtualIdx--;
+            current = (current - 1 + REAL_COUNT) % REAL_COUNT;
+            updateActive();
+            moveTo(virtualIdx);
+            // Landed on prepended clone → silently jump to last real slide
+            if (virtualIdx === 0) {
+                wrapping = true;
+                track.addEventListener('transitionend', function onWrap() {
+                    track.removeEventListener('transitionend', onWrap);
+                    allSlides.forEach(s => s.style.transition = 'none');
+                    virtualIdx = REAL_COUNT;
+                    moveTo(REAL_COUNT, false);
+                    updateActive();
+                    track.offsetHeight; // force reflow before re-enabling transitions
+                    allSlides.forEach(s => s.style.transition = '');
+                    wrapping = false;
+                }, { once: true });
+            }
+        }
+
+        function goToLogical(logicalIdx, animate = true) {
+            if (wrapping) return;
+            current    = logicalIdx;
+            virtualIdx = logicalIdx + 1;
+            updateActive();
+            moveTo(virtualIdx, animate);
+        }
+
+        // ── Init ──────────────────────────────────────────────────────────
+        measureInfoHeight();
+        goToLogical(0, false);
+
+        window.addEventListener('resize', () => { measureInfoHeight(); moveTo(virtualIdx, false); });
+
+        // ── Controls ──────────────────────────────────────────────────────
+        prevBtn.addEventListener('click', goPrev);
+        nextBtn.addEventListener('click', goNext);
+        dots.forEach(d => d.addEventListener('click', () => goToLogical(+d.dataset.dot)));
+
+        // Click on a faded adjacent slide
+        let didDrag = false;
+        allSlides.forEach((s, i) => {
+            s.addEventListener('click', () => {
+                if (!didDrag) {
+                    if (i < virtualIdx) goPrev();
+                    else if (i > virtualIdx) goNext();
+                }
+            });
+        });
+
+        // ── Drag / swipe ──────────────────────────────────────────────────
+        let dragStartX = 0;
+        let dragBase   = 0;
+
+        function onDragStart(e) {
+            dragStartX = e.touches ? e.touches[0].clientX : e.clientX;
+            dragBase   = baseOffset;
+            didDrag    = false;
+            viewport.classList.add('is-dragging');
+            track.classList.add('no-anim');
+            document.addEventListener('mousemove', onDragMove);
+            document.addEventListener('mouseup',   onDragEnd);
+            document.addEventListener('touchmove', onDragMove, { passive: true });
+            document.addEventListener('touchend',  onDragEnd);
+        }
+
+        function onDragMove(e) {
+            const x = e.touches ? e.touches[0].clientX : e.clientX;
+            const delta = x - dragStartX;
+            if (Math.abs(delta) > 6) didDrag = true;
+            if (didDrag) track.style.transform = `translateX(${dragBase + delta}px)`;
+        }
+
+        function onDragEnd(e) {
+            viewport.classList.remove('is-dragging');
+            track.classList.remove('no-anim');
+            const x = e.changedTouches ? e.changedTouches[0].clientX : e.clientX;
+            const delta = x - dragStartX;
+            if (didDrag && Math.abs(delta) > 55) {
+                if (delta < 0) goNext();
+                else goPrev();
+            } else {
+                moveTo(virtualIdx); // snap back
+            }
+            document.removeEventListener('mousemove', onDragMove);
+            document.removeEventListener('mouseup',   onDragEnd);
+            document.removeEventListener('touchmove', onDragMove);
+            document.removeEventListener('touchend',  onDragEnd);
+        }
+
+        viewport.addEventListener('mousedown',  onDragStart);
+        viewport.addEventListener('touchstart', onDragStart, { passive: true });
+        viewport.addEventListener('dragstart',  e => e.preventDefault());
+    </script>
 </body>
 </html>
