@@ -223,23 +223,28 @@
         <div class="carousel-viewport" id="carouselViewport">
             <div class="carousel-track" id="carouselTrack">
                 
-                <!-- Slide 0: Select the Best Mic -->
+                <!-- Slide 0: Sampler's Friend -->
                 <div class="project-slide" data-index="0">
+                    <img src="/assets/images/samplers_friend.png" alt="Sampler's Friend">
+                </div>
+
+                <!-- Slide 1: Select the Best Mic -->
+                <div class="project-slide" data-index="1">
                     <img src="/assets/images/soundflow_best_mic.png" alt="Soundflow Select the Best Mic">
                 </div>
 
-                <!-- Slide 1: DA3 Batch Loudness -->
-                <div class="project-slide" data-index="1">
+                <!-- Slide 2: DA3 Batch Loudness -->
+                <div class="project-slide" data-index="2">
                     <img src="/assets/images/DA3.png" alt="Batch Loudness for Dolby Atmos Album Assembler">
                 </div>
 
-                <!-- Slide 2: Text2Synth -->
-                <div class="project-slide" data-index="2">
+                <!-- Slide 3: Text2Synth -->
+                <div class="project-slide" data-index="3">
                     <img src="/assets/images/Text2Synth.png" alt="Text2Synth">
                 </div>
 
-                <!-- Slide 3: IWWER -->
-                <div class="project-slide" data-index="3">
+                <!-- Slide 4: IWWER -->
+                <div class="project-slide" data-index="4">
                     <img src="/assets/images/IWWER.png" alt="Information Weighted Word Error Rate" class="img-contain">
                 </div>
 
@@ -269,6 +274,7 @@
                 <div class="c-dot" data-dot="1"></div>
                 <div class="c-dot" data-dot="2"></div>
                 <div class="c-dot" data-dot="3"></div>
+                <div class="c-dot" data-dot="4"></div>
                 <!-- Add one dot per new project:
                 <div class="c-dot" data-dot="3"></div>
                 -->
@@ -280,8 +286,29 @@
     <!-- Project Info Panels -->
     <section class="info-section" id="infoSection">
 
-        <!-- Panel 0: Select the Best Mic -->
+        <!-- Panel 0: Sampler's Friend -->
         <div class="info-panel" data-panel="0">
+            <h2>Sampler's Friend</h2>
+            <p>
+                Sampler's Friend is a JUCE based audio application that facilitates basic sample acquisition and processing. 
+                If you've ever had to wade through a sea of ads and janky websites to download audio from YouTube or 
+                split stems out from a track, Sampler's Friend provides a fast, free, and reliable way of doing it all in one place.
+                It also includes a tempo/pitch adjustment module with auto key and BPM detection, so you can go from local file
+                or YouTube URL to high quality, key and tempo matched stems in seconds.   
+            </p>
+            <p>
+                Sampler's Friend uses bundled Python scripts to run yt-dlp, htdemucs, and librosa beat tracker. The tempo only
+                time stretching algorithm is a simple WSOLA implementation, while tempo and pitch adjustment uses Lagrange
+                Interpolation. Auto key detection is based on the Krumhansl-Schmuckler key-finding algorithm. I plan on replacing
+                or improving these algorithms over time as well as adding new stem splitter models and other features.
+            </p>
+            <p>
+                If you would like a copy, please send me an email or use my message form here and I'll provide you an installer. 
+            </p>
+        </div>
+
+        <!-- Panel 1: Select the Best Mic -->
+        <div class="info-panel" data-panel="1">
             <h2>Soundflow Select the Best Mic</h2>
             <p>
                 The Soundflow select the best mic tool is an hybrid ML/traditional DSP based algorithm for choosing the optimal
@@ -295,8 +322,8 @@
             </p>
         </div>
 
-        <!-- Panel 1: DA3 Batch Loudness -->
-        <div class="info-panel" data-panel="1">
+        <!-- Panel 2: DA3 Batch Loudness -->
+        <div class="info-panel" data-panel="2">
             <h2>Batch Loudness for Dolby Atmos Album Assembler</h2>
             <p>
                 A script for the Soundflow platform which automates loudness analysis in the Dolby Atmos Album Assembler.
@@ -310,8 +337,8 @@
             </p>
         </div>
 
-        <!-- Panel 2: Text2Synth -->
-        <div class="info-panel" data-panel="2">
+        <!-- Panel 3: Text2Synth -->
+        <div class="info-panel" data-panel="3">
             <h2>Text2Synth</h2>
             <p>
                 Text2Synth is a wrapper for existing synthesizer plugins that lets users generate synth patches from qualitative text descriptions.
@@ -326,8 +353,8 @@
             </p>
         </div>
 
-        <!-- Panel 3: IWWER -->
-        <div class="info-panel" data-panel="3">
+        <!-- Panel 4: IWWER -->
+        <div class="info-panel" data-panel="4">
             <h2>Information Weighted Word Error Rate</h2>
             <p>
                 Word error rate (WER) is a standard metric for evaluating automatic speech recognition models, computed as (S+D+I)&thinsp;/&thinsp;N —
