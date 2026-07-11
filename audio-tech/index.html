@@ -77,6 +77,7 @@
             filter: brightness(1);
             cursor: default;
         }
+        .project-slide.active[data-href] { cursor: pointer; }
         .project-slide img {
             width: 100%;
             height: 310px;
@@ -206,8 +207,8 @@
             </button>
             <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                 <ul class="navbar-nav">
-                    <li class="nav-item"><a class="nav-link" href="/music/index.html">Music</a></li>
-                    <li class="nav-item"><a class="nav-link" href="index.html">Audio Tech</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/music/">Music</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/audio-tech/">Audio Tech</a></li>
                 </ul>
             </div>
         </div>
@@ -224,7 +225,7 @@
             <div class="carousel-track" id="carouselTrack">
                 
                 <!-- Slide 0: Sampler's Friend -->
-                <div class="project-slide" data-index="0">
+                <div class="project-slide" data-index="0" data-href="/audio-tech/samplers-friend/">
                     <img src="/assets/images/samplers_friend.png" alt="Sampler's Friend">
                 </div>
 
@@ -297,13 +298,7 @@
                 or YouTube URL to high quality, key and tempo matched stems in seconds.   
             </p>
             <p>
-                Sampler's Friend uses bundled Python scripts to run yt-dlp, htdemucs, and librosa beat tracker. The tempo only
-                time stretching algorithm is a simple WSOLA implementation, while tempo and pitch adjustment uses Lagrange
-                Interpolation. Auto key detection is based on the Krumhansl-Schmuckler key-finding algorithm. I plan on replacing
-                or improving these algorithms over time as well as adding new stem splitter models and other features.
-            </p>
-            <p>
-                If you would like a copy, please send me an email or use my message form here and I'll provide you an installer. 
+                Click <a href="/audio-tech/samplers-friend/">here</a> to download Sampler's Friend and read more about the app.
             </p>
         </div>
 
@@ -537,13 +532,15 @@
         nextBtn.addEventListener('click', goNext);
         dots.forEach(d => d.addEventListener('click', () => goToLogical(+d.dataset.dot)));
 
-        // Click on a faded adjacent slide
+        // Click on a faded adjacent slide navigates the carousel;
+        // click on the active slide follows its data-href (if set)
         let didDrag = false;
         allSlides.forEach((s, i) => {
             s.addEventListener('click', () => {
                 if (!didDrag) {
                     if (i < virtualIdx) goPrev();
                     else if (i > virtualIdx) goNext();
+                    else if (s.dataset.href) window.location.href = s.dataset.href;
                 }
             });
         });

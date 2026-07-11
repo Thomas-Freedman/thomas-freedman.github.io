@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sampler's Friend</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+            background-color: rgb(23, 23, 23);
+            color: whitesmoke;
+            font-size: 1.2em;
+            overflow-x: hidden;
+        }
+
+        /* ---- Navbar ---- */
+        .navbar { background-color: black !important; border: none; }
+        .navbar a { color: white !important; }
+        .navbar-toggler { border-color: rgba(255,255,255,0.3); }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba%28255,255,255,1%29' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+
+        /* ---- Hero ---- */
+        .hero {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.4rem;
+            letter-spacing: 0.04em;
+            margin-bottom: 1.6rem;
+        }
+        .hero img {
+            width: 100%;
+            border-radius: 14px;
+            box-shadow: 0 14px 50px rgba(0,0,0,0.7);
+            display: block;
+        }
+
+        /* ---- Content sections ---- */
+        .content {
+            max-width: 820px;
+            margin: 0 auto;
+            padding: 2.5rem 2rem 4rem;
+        }
+        .content section { margin-bottom: 3rem; }
+        .content h2 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid rgba(255,255,255,0.12);
+        }
+        .content p {
+            color: rgba(245,245,245,0.82);
+            line-height: 1.74;
+            margin-bottom: 0.9rem;
+        }
+        .content a { color: rgba(185,195,255,0.9); }
+
+        /* ---- Changelog ---- */
+        .changelog-entry { margin-bottom: 1.6rem; }
+        .changelog-entry .version-line {
+            display: flex;
+            align-items: baseline;
+            gap: 0.8rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.4rem;
+        }
+        .changelog-entry h3 {
+            font-size: 1.15rem;
+            margin: 0;
+        }
+        .changelog-entry .date {
+            color: rgba(245,245,245,0.45);
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+        }
+        .changelog-entry ul {
+            color: rgba(245,245,245,0.82);
+            line-height: 1.74;
+            margin: 0;
+            padding-left: 1.3rem;
+        }
+
+        /* ---- Downloads ---- */
+        .download-card {
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.14);
+            border-radius: 14px;
+            padding: 1.2rem 1.5rem;
+            text-decoration: none;
+            transition: background 0.22s, border-color 0.22s, transform 0.22s;
+            max-width: 560px;
+        }
+        .download-card:hover {
+            background: rgba(255,255,255,0.1);
+            border-color: rgba(255,255,255,0.32);
+            transform: translateY(-2px);
+        }
+        .download-card .fa-apple {
+            font-size: 2.4rem;
+            color: whitesmoke;
+            width: auto;
+            padding: 0;
+        }
+        .download-card .dl-text { flex: 1; }
+        .download-card .dl-title {
+            color: whitesmoke;
+            font-size: 1.05rem;
+            margin: 0;
+        }
+        .download-card .dl-meta {
+            color: rgba(245,245,245,0.5);
+            font-size: 0.82rem;
+            letter-spacing: 0.04em;
+            margin: 0.2rem 0 0;
+        }
+        .download-card .fa-download {
+            font-size: 1.1rem;
+            color: rgba(245,245,245,0.6);
+            width: auto;
+            padding: 0;
+        }
+        .gatekeeper-note {
+            font-size: 0.85rem;
+            color: rgba(245,245,245,0.5);
+            margin-top: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* ---- Footer ---- */
+        .footer {
+            text-align: center;
+            font-size: 0.8em;
+            padding: 1.8em 1em 1.2em;
+            color: whitesmoke;
+            border-top: 1px solid rgba(255,255,255,0.08);
+        }
+        .fa {
+            padding: 0.2em;
+            font-size: 1.6em;
+            width: 1.5em;
+            text-align: center;
+            text-decoration: none;
+            color: white;
+        }
+
+        /* ---- Responsive ---- */
+        @media (max-width: 768px) {
+            .hero { padding: 2rem 1rem 0; }
+            .hero h1 { font-size: 2rem; }
+            .content { padding: 2rem 1.2rem 3rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">Home</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link" href="/music/index.html">Music</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/audio-tech/index.html">Audio Tech</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <div class="hero">
+        <h1>Sampler's Friend</h1>
+        <img src="/assets/images/samplers_friend_ui.png" alt="Sampler's Friend application window">
+    </div>
+
+    <!-- Content -->
+    <div class="content">
+
+        <!-- About -->
+        <section id="about">
+            <h2>About</h2>
+            <p>
+                Sampler's Friend is a JUCE based audio application that facilitates basic sample acquisition and processing.
+                If you've ever had to wade through a sea of ads and janky websites to download audio from YouTube or
+                split stems out from a track, Sampler's Friend provides a fast, free, and reliable way of doing it all in one place.
+                It also includes a tempo/pitch adjustment module with auto key and BPM detection, so you can go from local file
+                or YouTube URL to high quality, key and tempo matched stems in seconds.
+            </p>
+            <p>
+                Sampler's Friend uses bundled Python scripts to run yt-dlp, htdemucs, and librosa beat tracker. The tempo only
+                time stretching algorithm is a simple WSOLA implementation, while tempo and pitch adjustment uses Lagrange
+                Interpolation. Auto key detection is based on the Krumhansl-Schmuckler key-finding algorithm. I plan on replacing
+                or improving these algorithms over time as well as adding new stem splitter models and other features.
+            </p>
+        </section>
+
+        <!-- Changelog -->
+        <section id="changelog">
+            <h2>Changelog</h2>
+            <div class="changelog-entry">
+                <div class="version-line">
+                    <h3>V1.0.0</h3>
+                    <span class="date">July 2026</span>
+                </div>
+                <ul>
+                    <li>Initial release.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Downloads -->
+        <section id="downloads">
+            <h2>Downloads</h2>
+            <a class="download-card" href="/downloads/SamplersFriend-1.0.0-macOS-Universal.pkg" download>
+                <i class="fa fa-apple" aria-hidden="true"></i>
+                <div class="dl-text">
+                    <p class="dl-title">Sampler's Friend V1.0.0 &mdash; macOS Universal</p>
+                    <p class="dl-meta">.pkg installer &middot; Apple Silicon &amp; Intel &middot; 8.4 MB</p>
+                </div>
+                <i class="fa fa-download" aria-hidden="true"></i>
+            </a>
+            <p class="gatekeeper-note">
+                Note: the installer and app are not notarized by Apple (I don't want to pay for a dev license), 
+                so macOS will block first open of the installer. To get around this, you can go to 
+                System Settings > Privacy & Security > Open Anyway (scroll down to the bottom where it says 
+                "SamplersFriend.pkg was blocked to protect your Mac") to run it anyways. Sorry for the bother!
+            </p>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <a href="https://www.linkedin.com/in/thomas-freedman/" class="fa fa-linkedin"></a>
+        <a href="https://github.com/Thomas-Freedman" class="fa fa-github"></a>
+        <a href="https://www.instagram.com/tfreed.man/" class="fa fa-instagram"></a><br>
+        <a href="mailto:tnfreedman@gmail.com">tnfreedman@gmail.com</a>
+        <p>&copy; 2026 Thomas Freedman</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
